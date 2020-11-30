@@ -13,6 +13,8 @@
 		07B664452574E92F00F7BE6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B664432574E92F00F7BE6A /* Main.storyboard */; };
 		07B664472574E93200F7BE6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B664462574E93200F7BE6A /* Assets.xcassets */; };
 		07B6644A2574E93200F7BE6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B664482574E93200F7BE6A /* LaunchScreen.storyboard */; };
+		07F9B5D625753747006E070D /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9B5D525753747006E070D /* ConverterViewController.swift */; };
+		07F9B5DA2575699B006E070D /* CurrencyInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9B5D92575699B006E070D /* CurrencyInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		07B664462574E93200F7BE6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07B664492574E93200F7BE6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07B6644B2574E93200F7BE6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F9B5D525753747006E070D /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
+		07F9B5D92575699B006E070D /* CurrencyInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				07B6643D2574E92F00F7BE6A /* AppDelegate.swift */,
 				07B6643F2574E92F00F7BE6A /* SceneDelegate.swift */,
 				07B664412574E92F00F7BE6A /* ViewController.swift */,
+				07F9B5D525753747006E070D /* ConverterViewController.swift */,
+				07F9B5D92575699B006E070D /* CurrencyInformation.swift */,
 				07B664432574E92F00F7BE6A /* Main.storyboard */,
 				07B664462574E93200F7BE6A /* Assets.xcassets */,
 				07B664482574E93200F7BE6A /* LaunchScreen.storyboard */,
@@ -139,7 +145,9 @@
 			files = (
 				07B664422574E92F00F7BE6A /* ViewController.swift in Sources */,
 				07B6643E2574E92F00F7BE6A /* AppDelegate.swift in Sources */,
+				07F9B5DA2575699B006E070D /* CurrencyInformation.swift in Sources */,
 				07B664402574E92F00F7BE6A /* SceneDelegate.swift in Sources */,
+				07F9B5D625753747006E070D /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +304,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Converter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Converter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
