@@ -15,7 +15,9 @@ class CurrencyViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
-        cell.textLabel?.text = currencies[indexPath.row].cc
+        let currentCurrency = currencies[indexPath.row]
+        cell.currencySign.text = currentCurrency.cc
+        cell.currencyRate.text = String(currentCurrency.rate)
         return cell
     }
 
@@ -23,8 +25,25 @@ class CurrencyViewController: UIViewController, UITableViewDelegate, UITableView
     var currencyTable = UITableView()
     var currencies = [CurrencyInformation(cc: "AUD", rate: 20.9881), CurrencyInformation(cc: "CAD", rate: 21.9061)]
 
-
     class Cell: UITableViewCell {
+        var currencySign: UILabel = {
+            var sign = UILabel(frame: CGRect(x: 20.0, y: 15.0, width: 300.0, height: 30))
+            return sign
+        }()
+        var currencyRate: UILabel = {
+            var rate = UILabel(frame: CGRect(x: 300.0, y: 15.0, width: 300.0, height: 30))
+            return rate
+        }()
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            self.addSubview(currencySign)
+            self.addSubview(currencyRate)
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     }
 
     override func viewDidLoad() {
@@ -54,7 +73,6 @@ class CurrencyViewController: UIViewController, UITableViewDelegate, UITableView
 
     func createTable() {
         self.currencyTable = UITableView(frame: view.bounds, style: .plain)
-//        self.currencyTable.separatorStyle = .none
         self.currencyTable.delegate = self
         self.currencyTable.dataSource = self
 
@@ -64,7 +82,4 @@ class CurrencyViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(currencyTable)
     }
 
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
 }
