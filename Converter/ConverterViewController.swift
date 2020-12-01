@@ -24,13 +24,12 @@ class ConverterViewController: UIViewController {
         title = "Converter"
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
 
-        let currencySelector = UIPickerView(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 200))
-        currencySelector.center = view.center
+        let currencySelector = UIPickerView(frame: CGRect(x: 0, y: 190, width: view.frame.width, height: 100))
         currencySelector.dataSource = self
         currencySelector.delegate = self
 
-        topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 200)
-        bottomCalculationRow.frame = CGRect(x: 0, y: 500, width: view.frame.width, height: 200)
+        topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 100)
+        bottomCalculationRow.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 100)
 
         view.addSubview(currencySelector)
         view.addSubview(topCalculationRow)

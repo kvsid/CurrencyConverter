@@ -8,12 +8,12 @@
 import UIKit
 
 class CalculationRowView: UIView {
-    let currencyLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 100, height: 31))
-    let currencyField = UITextField(frame: CGRect(x: 250, y: 90, width: 100, height: 31))
+    let currencyLabel = UILabel(frame: CGRect(x: 10, y: 35, width: 100, height: 31))
+    let currencyField = UITextField(frame: CGRect(x: 250, y: 35, width: 100, height: 31))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .green // Remove me in the future
+        self.backgroundColor = .lightGray // Remove me in the future
 
         setupCurrencyLabel()
         setupCurrencyField()
@@ -25,7 +25,6 @@ class CalculationRowView: UIView {
 
     func setupCurrencyLabel(_ labelTitle: String = "UAH") {
         currencyLabel.text = labelTitle
-        currencyLabel.backgroundColor = .red // Remove me in the future
 
         self.addSubview(currencyLabel)
     }
@@ -34,6 +33,10 @@ class CalculationRowView: UIView {
         currencyField.backgroundColor = .white // Remove me in the future
         currencyField.placeholder = "0.00"
         currencyField.borderStyle = .roundedRect
+        currencyField.layer.borderColor = CGColor(red: 100.0, green: 1.0, blue: 0.0, alpha: 1.0)
+        currencyField.layer.borderWidth = 2
+        currencyField.textAlignment = .center
+        currencyField.contentVerticalAlignment = .center
 
         currencyField.delegate = self
         self.addSubview(currencyField)
@@ -44,5 +47,11 @@ extension CalculationRowView: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         print("TEXT: \(textField.text!)")
     }
-}
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard CharacterSet(charactersIn: "0123456789.")
+                .isSuperset(of: CharacterSet(charactersIn: string)) else { return false }
+
+        return true
+    }
+}
