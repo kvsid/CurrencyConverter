@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0727671C25768F74004B701C /* CalculationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0727671B25768F74004B701C /* CalculationRowView.swift */; };
+		072767252576EB31004B701C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072767242576EB31004B701C /* Cell.swift */; };
 		07B6643E2574E92F00F7BE6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6643D2574E92F00F7BE6A /* AppDelegate.swift */; };
 		07B664402574E92F00F7BE6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6643F2574E92F00F7BE6A /* SceneDelegate.swift */; };
 		07B664422574E92F00F7BE6A /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B664412574E92F00F7BE6A /* CurrencyViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		0727671B25768F74004B701C /* CalculationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationRowView.swift; sourceTree = "<group>"; };
+		072767242576EB31004B701C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		07B6643A2574E92F00F7BE6A /* Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B6643D2574E92F00F7BE6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07B6643F2574E92F00F7BE6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,12 +68,13 @@
 				07B6643F2574E92F00F7BE6A /* SceneDelegate.swift */,
 				07B664412574E92F00F7BE6A /* CurrencyViewController.swift */,
 				07F9B5D525753747006E070D /* ConverterViewController.swift */,
+				0727671B25768F74004B701C /* CalculationRowView.swift */,
+				072767242576EB31004B701C /* Cell.swift */,
 				07F9B5D92575699B006E070D /* CurrencyInformation.swift */,
 				07B664432574E92F00F7BE6A /* Main.storyboard */,
 				07B664462574E93200F7BE6A /* Assets.xcassets */,
 				07B664482574E93200F7BE6A /* LaunchScreen.storyboard */,
 				07B6644B2574E93200F7BE6A /* Info.plist */,
-				0727671B25768F74004B701C /* CalculationRowView.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			files = (
 				07B664422574E92F00F7BE6A /* CurrencyViewController.swift in Sources */,
 				07B6643E2574E92F00F7BE6A /* AppDelegate.swift in Sources */,
+				072767252576EB31004B701C /* Cell.swift in Sources */,
 				07F9B5DA2575699B006E070D /* CurrencyInformation.swift in Sources */,
 				0727671C25768F74004B701C /* CalculationRowView.swift in Sources */,
 				07B664402574E92F00F7BE6A /* SceneDelegate.swift in Sources */,

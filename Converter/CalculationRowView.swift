@@ -15,7 +15,7 @@ class CalculationRowView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .lightGray // Remove me in the future
+        self.backgroundColor = .systemGray6
 
         setupCurrencyLabel()
         setupCurrencyField()
@@ -30,11 +30,11 @@ class CalculationRowView: UIView {
     }
 
     func setupCurrencyField() {
-        currencyField.backgroundColor = .white // Remove me in the future
+        currencyField.backgroundColor = .white
         currencyField.placeholder = "0.00"
         currencyField.borderStyle = .roundedRect
-        currencyField.layer.borderColor = CGColor(red: 100.0, green: 1.0, blue: 0.0, alpha: 1.0)
-        currencyField.layer.borderWidth = 2
+        currencyField.layer.borderColor = UIColor.systemYellow.cgColor
+        currencyField.layer.borderWidth = 3
         currencyField.textAlignment = .center
         currencyField.contentVerticalAlignment = .center
 
