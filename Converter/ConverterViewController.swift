@@ -15,24 +15,38 @@ class ConverterViewController: UIViewController {
         button.title = "Back"
         return button
     }()
-    let topCalculationRow = CalculationRowView()
-    let bottomCalculationRow = CalculationRowView()
+    var currencySelector = UIPickerView()
+    var topCalculationRow = TopCalculationRowView()
+    var bottomCalculationRow = BottomCalculationRowView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Converter"
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
 
-        let currencySelector = UIPickerView(frame: CGRect(x: 0, y: 190, width: view.frame.width, height: 100))
+        setupNavButton()
+        setupSelector()
+        setupTopCalculationRow()
+        setupBottomCalculationRow()
+    }
+
+    private func setupNavButton() {
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+
+    private func setupSelector() {
+        currencySelector = UIPickerView(frame: CGRect(x: 0, y: 190, width: view.frame.width, height: 100))
         currencySelector.dataSource = self
         currencySelector.delegate = self
-
-        topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 100)
-        bottomCalculationRow.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 100)
-
         view.addSubview(currencySelector)
+    }
+
+    private func setupTopCalculationRow() {
+        topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 100)
         view.addSubview(topCalculationRow)
+    }
+    private func setupBottomCalculationRow() {
+        bottomCalculationRow.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 100)
         view.addSubview(bottomCalculationRow)
     }
 }
