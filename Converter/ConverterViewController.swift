@@ -9,6 +9,7 @@ import UIKit
 
 class ConverterViewController: UIViewController {
     var currencies = [CurrencyInformation(cc: "AUD", rate: 20.9881), CurrencyInformation(cc: "CAD", rate: 21.9061)]
+    var currentCurrency: CurrencyInformation?
 
     let backButton : UIBarButtonItem = {
         let button = UIBarButtonItem()
@@ -23,11 +24,30 @@ class ConverterViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Converter"
+        currentCurrency = currencies.first
 
         setupNavButton()
         setupSelector()
         setupTopCalculationRow()
         setupBottomCalculationRow()
+    }
+
+    func calculateTopCalculationRow(value: String?) {
+        if let value = value,
+           let current = currentCurrency,
+           let doubleValue = Double(value) {
+                let roundedResult = Double(round(doubleValue / current.rate * 100) / 100)
+                topCalculationRow.currencyField.text = String(roundedResult)
+        }
+    }
+
+    func calculateBottomCalculationRow(value: String?) {
+        if let value = value,
+           let current = currentCurrency,
+           let doubleValue = Double(value) {
+                let roundedResult = Double(round(doubleValue * current.rate * 100) / 100)
+                bottomCalculationRow.currencyField.text = String(roundedResult)
+        }
     }
 
     private func setupNavButton() {
@@ -43,10 +63,12 @@ class ConverterViewController: UIViewController {
 
     private func setupTopCalculationRow() {
         topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 100)
+        topCalculationRow.delegateController = self
         view.addSubview(topCalculationRow)
     }
     private func setupBottomCalculationRow() {
         bottomCalculationRow.frame = CGRect(x: 0, y: 290, width: view.frame.width, height: 100)
+        bottomCalculationRow.delegateController = self
         view.addSubview(bottomCalculationRow)
     }
 }
@@ -67,6 +89,7 @@ extension ConverterViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentCurrency = currencies[row] // ??????
         topCalculationRow.setupCurrencyLabel(currencies[row].cc)
     }
 }
