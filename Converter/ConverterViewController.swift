@@ -16,7 +16,7 @@ class ConverterViewController: UIViewController {
         button.title = "Back"
         return button
     }()
-    var currencySelector = UIPickerView()
+    var currencyPicker = UIPickerView()
     var topCalculationRow = TopCalculationRowView()
     var bottomCalculationRow = BottomCalculationRowView()
 
@@ -27,7 +27,7 @@ class ConverterViewController: UIViewController {
         currentCurrency = currencies.first
 
         setupNavButton()
-        setupSelector()
+        setupPicker()
         setupTopCalculationRow()
         setupBottomCalculationRow()
     }
@@ -54,14 +54,17 @@ class ConverterViewController: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
 
-    private func setupSelector() {
-        currencySelector = UIPickerView(frame: CGRect(x: 0, y: 190, width: view.frame.width, height: 100))
-        currencySelector.dataSource = self
-        currencySelector.delegate = self
-        view.addSubview(currencySelector)
+    private func setupPicker() {
+        currencyPicker = UIPickerView(frame: CGRect(x: 0, y: 190, width: view.frame.width, height: 100))
+        currencyPicker.dataSource = self
+        currencyPicker.delegate = self
+        view.addSubview(currencyPicker)
     }
 
     private func setupTopCalculationRow() {
+        if let first = currencies.first {
+            topCalculationRow.setupLabel(value: first.cc)
+        }
         topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 100)
         topCalculationRow.delegateController = self
         view.addSubview(topCalculationRow)
@@ -89,7 +92,7 @@ extension ConverterViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentCurrency = currencies[row] // ??????
-        topCalculationRow.setupCurrencyLabel(currencies[row].cc)
+        currentCurrency = currencies[row]
+        topCalculationRow.setupLabel(value: currencies[row].cc)
     }
 }

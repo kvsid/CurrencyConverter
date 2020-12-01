@@ -25,9 +25,7 @@ class CalculationRowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupCurrencyLabel(_ labelTitle: String = "UAH") {
-        currencyLabel.text = labelTitle
-
+    func setupCurrencyLabel() {
         self.addSubview(currencyLabel)
     }
 
@@ -55,7 +53,22 @@ extension CalculationRowView: UITextFieldDelegate {
 }
 
 class TopCalculationRowView: CalculationRowView {
-    let identifier = "TopCalculationRowView"
+    override func setupCurrencyLabel() {
+        super.setupCurrencyLabel()
+        if let controller = delegateController,
+           let current = controller.currentCurrency {
+            currencyLabel.text = current.cc
+        }
+
+        if let controller = delegateController,
+           let first = controller.currencies.first {
+            currencyLabel.text = first.cc
+        } // Might be a hicup once model is connected.
+    }
+
+    func setupLabel(value: String) {
+        currencyLabel.text = value
+    }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let controller = delegateController {
@@ -65,7 +78,10 @@ class TopCalculationRowView: CalculationRowView {
 }
 
 class BottomCalculationRowView: CalculationRowView {
-    let identifier = "BottomCalculationRowView"
+    override func setupCurrencyLabel() {
+        super.setupCurrencyLabel()
+        currencyLabel.text = "UAH"
+    }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let controller = delegateController {
