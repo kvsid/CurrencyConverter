@@ -15,6 +15,8 @@ class ConverterViewController: UIViewController {
         button.title = "Back"
         return button
     }()
+    let topCalculationRow = CalculationRowView()
+    let bottomCalculationRow = CalculationRowView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,13 @@ class ConverterViewController: UIViewController {
         currencySelector.center = view.center
         currencySelector.dataSource = self
         currencySelector.delegate = self
+
+        topCalculationRow.frame = CGRect(x: 0, y: 90, width: view.frame.width, height: 200)
+        bottomCalculationRow.frame = CGRect(x: 0, y: 500, width: view.frame.width, height: 200)
+
         view.addSubview(currencySelector)
+        view.addSubview(topCalculationRow)
+        view.addSubview(bottomCalculationRow)
     }
 }
 
@@ -46,6 +54,6 @@ extension ConverterViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("row \(row). component \(component)")
+        topCalculationRow.setupCurrencyLabel(currencies[row].cc)
     }
 }
