@@ -8,10 +8,10 @@
 import UIKit
 
 class CalculationRowView: UIView {
-    let currencyLabel = UILabel(frame: CGRect(x: 10, y: 35, width: 100, height: 31))
-    let currencyField = UITextField(frame: CGRect(x: 250, y: 35, width: 100, height: 31))
+    public let currencyLabel = UILabel(frame: CGRect(x: 10, y: 35, width: 100, height: 31))
+    public let currencyField = UITextField(frame: CGRect(x: 250, y: 35, width: 100, height: 31))
 
-    var delegateController: ConverterViewController?
+    public var delegateController: ConverterViewController?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,11 +25,11 @@ class CalculationRowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupCurrencyLabel() {
+    internal func setupCurrencyLabel() {
         self.addSubview(currencyLabel)
     }
 
-    func setupCurrencyField() {
+    private func setupCurrencyField() {
         currencyField.backgroundColor = .white
         currencyField.placeholder = "0.00"
         currencyField.borderStyle = .roundedRect
@@ -44,7 +44,8 @@ class CalculationRowView: UIView {
 }
 
 extension CalculationRowView: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         guard CharacterSet(charactersIn: "0123456789.")
                 .isSuperset(of: CharacterSet(charactersIn: string)) else { return false }
 
@@ -63,10 +64,10 @@ class TopCalculationRowView: CalculationRowView {
         if let controller = delegateController,
            let first = controller.currencies.first {
             currencyLabel.text = first.cc
-        } // Might be a hicup once model is connected.
+        }
     }
 
-    func setupLabel(value: String) {
+    public func setupLabel(value: String) {
         currencyLabel.text = value
     }
 

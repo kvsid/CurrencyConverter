@@ -8,17 +8,17 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
-    var currencies = [CurrencyInformation(cc: "AUD", rate: 20.9881), CurrencyInformation(cc: "CAD", rate: 21.9061)]
-    var currentCurrency: CurrencyInformation?
+    public var currencies = [CurrencyInformation]()
+    public var currentCurrency: CurrencyInformation?
 
-    let backButton : UIBarButtonItem = {
+    private let backButton : UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.title = "Back"
         return button
     }()
-    var currencyPicker = UIPickerView()
-    var topCalculationRow = TopCalculationRowView()
-    var bottomCalculationRow = BottomCalculationRowView()
+    private var currencyPicker = UIPickerView()
+    private var topCalculationRow = TopCalculationRowView()
+    private var bottomCalculationRow = BottomCalculationRowView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class ConverterViewController: UIViewController {
         setupBottomCalculationRow()
     }
 
-    func calculateTopCalculationRow(value: String?) {
+    public func calculateTopCalculationRow(value: String?) {
         if let value = value,
            let current = currentCurrency,
            let doubleValue = Double(value) {
@@ -41,7 +41,7 @@ class ConverterViewController: UIViewController {
         }
     }
 
-    func calculateBottomCalculationRow(value: String?) {
+    public func calculateBottomCalculationRow(value: String?) {
         if let value = value,
            let current = currentCurrency,
            let doubleValue = Double(value) {

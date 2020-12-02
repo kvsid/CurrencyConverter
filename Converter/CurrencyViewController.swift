@@ -8,39 +8,40 @@
 import UIKit
 
 class CurrencyViewController: UIViewController, UITableViewDataSource {
-    var displayConverterButton = UIButton()
-    var currencyTable = UITableView()
-    var currencies = [CurrencyInformation(cc: "AUD", rate: 20.9881), CurrencyInformation(cc: "CAD", rate: 21.9061)]
+    private let converter = ConverterViewController()
+    private var displayConverterButton = UIButton()
+    private var currencyTable = UITableView()
+    private var currencies = [CurrencyInformation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Currency"
+        title = "Currency"
         setupTable()
         setupButton()
+        requestCurrencies()
     }
 
     @objc func performDisplayConverter (parametrSender: Any) {
-        let converter = ConverterViewController()
-        self.navigationController?.pushViewController(converter, animated: true)
+        converter.currencies = currencies
+        navigationController?.pushViewController(converter, animated: true)
     }
 
-    func setupButton(){
+    private func setupButton(){
         displayConverterButton = UIButton(type: .system)
         displayConverterButton.setTitle("Converter", for: .normal)
         displayConverterButton.sizeToFit()
         displayConverterButton.backgroundColor = .systemYellow
         displayConverterButton.tintColor = .black
         displayConverterButton
-            .frame = CGRect(x: 0, y: self.view.frame.height - 100, width: self.view.frame.width, height: 100)
-
-
+            .frame = CGRect(x: 0, y: view.frame.height - 100, width: view.frame.width, height: 100)
         displayConverterButton
             .addTarget(self, action: #selector(performDisplayConverter(parametrSender:)), for: .touchUpInside)
-        view.addSubview(self.displayConverterButton)
+
+        view.addSubview(displayConverterButton)
     }
 
-    func setupTable() {
+    private func setupTable() {
         currencyTable = UITableView(frame: view.bounds, style: .plain)
         currencyTable.delegate = self
         currencyTable.dataSource = self
@@ -50,6 +51,24 @@ class CurrencyViewController: UIViewController, UITableViewDataSource {
         view.addSubview(currencyTable)
     }
 
+    private func requestCurrencies() {
+        let url = URL(string: "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")!
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil, response != nil else {
+                print("Something went wrong. The data nil")
+                return
+            }
+            do {
+                let decodedData = try JSONDecoder().decode([CurrencyInformation].self, from: data)
+                self.currencies = decodedData
+                DispatchQueue.main.async {
+                    self.currencyTable.reloadData()
+                }
+            } catch {
+                print("Something went wrong")
+            }
+        }.resume()
+    }
 }
 
 extension CurrencyViewController: UITableViewDelegate {
