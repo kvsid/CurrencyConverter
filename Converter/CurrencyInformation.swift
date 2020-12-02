@@ -8,6 +8,6 @@
 import UIKit
 
 struct CurrencyInformation: Codable {
-    var cc: String
-    var rate: Double
+    public var cc: String
+    public var rate: Double
 }

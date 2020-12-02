@@ -8,8 +8,8 @@
 import UIKit
 
 class CalculationRowView: UIView {
-    public let currencyLabel = UILabel(frame: CGRect(x: 10, y: 35, width: 100, height: 31))
-    public let currencyField = UITextField(frame: CGRect(x: 250, y: 35, width: 100, height: 31))
+    public let currencyLabel = UILabel()
+    public let currencyField = UITextField()
 
     public var delegateController: ConverterViewController?
 
@@ -26,6 +26,7 @@ class CalculationRowView: UIView {
     }
 
     internal func setupCurrencyLabel() {
+        currencyLabel.frame = CGRect(x: 20, y: 35, width: 100, height: 31)
         self.addSubview(currencyLabel)
     }
 
@@ -37,6 +38,7 @@ class CalculationRowView: UIView {
         currencyField.layer.borderWidth = 3
         currencyField.textAlignment = .center
         currencyField.contentVerticalAlignment = .center
+        currencyField.frame = CGRect(x:  250, y: 35, width: 100, height: 31)
 
         currencyField.delegate = self
         self.addSubview(currencyField)
